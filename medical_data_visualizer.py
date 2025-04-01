@@ -17,22 +17,23 @@ df["cholesterol"] = (df["cholesterol"] > 1).astype(int)
 # Draw the Categorical Plot in the draw_cat_plot function.
 def draw_cat_plot():
     # Create a DataFrame for the cat plot using pd.melt with values from cholesterol, gluc, smoke, alco, active, and overweight in the df_cat variable.
-    df_cat = None
+    df_cat = pd.melt(df, id_vars=["cardio"], value_vars=["cholesterol", "gluc", "smoke", "alco", "active", "overweight"])
 
 
-    # 6
-    df_cat = None
+    # Group and reformat the data in df_cat to split it by cardio. Show the counts of each feature. You will have to rename one of the columns for the catplot to work correctly.
+    df_cat = df_cat.groupby(["cardio", "variable", "value"]).size().reset_index()
+    df_cat = df_cat.rename(columns={0: "totals"})
     
 
-    # 7
+    # Convert the data into long format and create a chart that shows the value counts of the categorical features using the following method provided by the seaborn library import: sns.catplot().
+    cht = sns.catplot(x="variable", y="totals", col="cardio", hue="value", data=df_cat, kind="bar") 
 
 
+    # Get the figure for the output and store it in the fig variable.
+    fig = cht.fig
 
-    # 8
-    fig = None
 
-
-    # 9
+    # Do not modify the next two lines.
     fig.savefig('catplot.png')
     return fig
 
@@ -60,3 +61,6 @@ def draw_heat_map():
     # 16
     fig.savefig('heatmap.png')
     return fig
+    
+
+draw_cat_plot()
