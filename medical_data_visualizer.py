@@ -11,7 +11,8 @@ df = pd.read_csv("medical_examination.csv")
 df['overweight'] = (df["weight"] / (df["height"] / 100) ** 2 > 25).astype(int)
 
 # 3
-
+df["gluc"] = (df["gluc"] > 1).astype(int)
+df["cholesterol"] = (df["cholesterol"] > 1).astype(int)
 
 # 4
 def draw_cat_plot():
