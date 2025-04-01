@@ -38,29 +38,28 @@ def draw_cat_plot():
     return fig
 
 
-# 10
+# Draw the Heat Map in the draw_heat_map function.
 def draw_heat_map():
-    # 11
+    # Clean the data in the df_heat variable by filtering out the following patient segments that represent incorrect data: 
     df_heat = None
 
-    # 12
+    # Calculate the correlation matrix and store it in the corr variable.
     corr = None
 
-    # 13
+    # Generate a mask for the upper triangle and store it in the mask variable.
     mask = None
 
 
 
-    # 14
+    # Set up the matplotlib figure.
     fig, ax = None
 
-    # 15
+    # Plot the correlation matrix using the method provided by the seaborn library import: sns.heatmap().
 
 
 
-    # 16
+    # Do not modify the next two lines.
     fig.savefig('heatmap.png')
     return fig
     
 
-draw_cat_plot()
