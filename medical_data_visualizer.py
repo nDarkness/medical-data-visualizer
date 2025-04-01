@@ -46,11 +46,11 @@ def draw_heat_map():
     # height is less than the 2.5th percentile (Keep the correct data with (df['height'] >= df['height'].quantile(0.025)))
     height_025 = (df['height'] >= df['height'].quantile(0.025))
     # height is more than the 97.5th percentile
-    height_97 = (df['height'] >= df['height'].quantile(0.975))
+    height_97 = (df['height'] <= df['height'].quantile(0.975))
     # weight is less than the 2.5th percentile
     weight_025 = (df['weight'] >= df['weight'].quantile(0.025))
     # weight is more than the 97.5th percentile
-    weight_97 = (df['weight'] >= df['weight'].quantile(0.975))
+    weight_97 = (df['weight'] <= df['weight'].quantile(0.975))
     
     df_heat = df[diastolic_pressure & height_025 & height_97 & weight_025 & weight_97]
     
@@ -68,7 +68,7 @@ def draw_heat_map():
 
 
     # Plot the correlation matrix using the method provided by the seaborn library import: sns.heatmap().
-    sns.heatmap(corr, annot=True, mask=mask, fmt=".1f", square=True, linewidths=.5)
+    sns.heatmap(corr, mask=mask, annot=True, fmt=".1f", square=True, linewidths=.5, vmax=.245, vmin=.07, center=0)
 
 
     # Do not modify the next two lines.
