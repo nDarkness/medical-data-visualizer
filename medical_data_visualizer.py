@@ -22,11 +22,11 @@ def draw_cat_plot():
 
     # Group and reformat the data in df_cat to split it by cardio. Show the counts of each feature. You will have to rename one of the columns for the catplot to work correctly.
     df_cat = df_cat.groupby(["cardio", "variable", "value"]).size().reset_index()
-    df_cat = df_cat.rename(columns={0: "totals"})
+    df_cat = df_cat.rename(columns={0: "total"})
     
 
     # Convert the data into long format and create a chart that shows the value counts of the categorical features using the following method provided by the seaborn library import: sns.catplot().
-    cht = sns.catplot(x="variable", y="totals", col="cardio", hue="value", data=df_cat, kind="bar") 
+    cht = sns.catplot(x="variable", y="total", col="cardio", hue="value", data=df_cat, kind="bar") 
 
 
     # Get the figure for the output and store it in the fig variable.
